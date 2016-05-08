@@ -1,4 +1,4 @@
-const section1 = {
+const branchDetails = {
   legend: 'Branch Name',
   rows: [{
     span: 1,
@@ -14,7 +14,7 @@ const section1 = {
   }]
 }
 
-const section2 = {
+const personalDetails = {
   legend: 'Personal Details',
   rows: [
     {
@@ -36,7 +36,7 @@ const section2 = {
           value: 'Lance'
         },
         {
-          label: 'BLAH BLAH BLAH',
+          label: 'Last Name',
           key: 'lname',
           type: 'text',
           span: 3,
@@ -66,7 +66,7 @@ const section2 = {
   ]
 }
 
-var ExampleForm = { section1: section1, section2: section2 }
+var ExampleForm = { branchDetails: branchDetails, personalDetails: personalDetails }
 if(typeof module === 'object' && typeof require === 'function') {
   module.exports = module.exports.default = ExampleForm
 } else {

@@ -1,4 +1,3 @@
-
 export const fieldContainer = {
   props: {
     value: null,
@@ -10,13 +9,12 @@ export const fieldContainer = {
   },
   methods: {
     setFocus() {
-      const { formField } =  this.$els
-      if(this.type!=='select') {
+      const { formField } = this.$els
+      if (this.type !== 'select') {
         formField.classList.add('focus')
         formField.focus()
         formField.select()
       } else {
-
       }
     },
     removeFocus() {
@@ -44,8 +42,11 @@ export const fieldContainer = {
 }
 
 export const fieldRow = {
-  props: { cols: Number, fields: Array },
   components: { fieldContainer },
+  props: {
+    cols: Number,
+    fields: Array
+  },
   computed: {
     fieldContainers() {
       return this.$refs.fieldContainer
@@ -67,11 +68,17 @@ export const fieldRow = {
 }
 
 export const fieldSet = {
-  props: { legend: String, rows: Array },
   components: { fieldRow },
+  props: {
+    legend: String,
+    rows: Array
+  },
   computed: {
     fieldRows() {
       return this.$refs.fieldRows
+    },
+    lecontainers() {
+      return this.fieldRows.map(r => r.$refs.fieldContainer)
     }
   },
   template: `

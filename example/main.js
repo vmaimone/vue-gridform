@@ -1,8 +1,7 @@
 const Vue = require('vue')
-const Sections = require('./form-schema')
-const GridForm = process.env.NODE_ENV === 'production'
-  ? require('../dist/vue-gridform')
-  : require('../grid-form/gridform.common')
+const NewUserForm = require('./form-schema')
+const InventoryForm = require('./another-form-schema')
+const GridForm = require('../grid-form/gridform.common')
 
 Vue.config.devtools = true
 
@@ -10,13 +9,32 @@ new Vue({
   el: 'body',
   components: { GridForm },
   data: {
-    formResults: null,
-    formSections: Sections
+    newUserForm: {
+      title: '<h2>New User Application</h2>',
+      schema: NewUserForm
+    },
+    inventoryForm: {
+      schema: InventoryForm,
+      title: '<h2>Inventory Adjustment</h2>'
+    },
+    activeForm: {},
+    formResults: null
   },
   methods: {
+    switchForms() {
+      this.formResults = {}
+      if(this.activeForm == this.newUserForm) {
+        this.activeForm = this.inventoryForm
+      } else {
+        this.activeForm = this.newUserForm
+      }
+    },
     handleSubmit(a,b) {
       console.log(a,b)
-      this.formResults = this.$refs.testForm.formData
+      this.formResults = {
+        obj: this.$refs.testForm.formData,
+        arr: this.$refs.testForm.formValues
+      }
     }
   }
 })

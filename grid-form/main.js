@@ -7,12 +7,25 @@ export default {
     header: String,
     sections: {
       type: Object,
-      required: true
+      required: true,
+      default() {
+        return {}
+      }
     }
   },
 
   computed: {
     formData() {
+      return this
+        .formValues
+        .reduce((form, current) => {
+          let { key, value } = current
+          let formSection = form[ key ] || (form[ key ] = value)
+          return form
+        }, {})
+    },
+
+    nestedFormData() {
       return this
         .formValues
         .reduce((form, current) => {
@@ -31,8 +44,10 @@ export default {
           const { fieldRows } = fieldSets[section]
 
           for (let { fieldContainers } of fieldRows) {
-            for (let { key, value } of fieldContainers) {
+            for (let { key, value, type } of fieldContainers) {
               value = value || null
+              if(value && type == 'number') value = +value
+              if(typeof value == 'string' && type == 'date') value = new Date(value)
               values.push({ section, key, value })
             }
           }

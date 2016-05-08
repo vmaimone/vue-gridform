@@ -7,40 +7,101 @@
     body {
       font-family: Helvetica, sans-serif;
     }
-
     #form-example {
-      width: 80%;
+      width: 88%;
       margin-left:auto;
       margin-right:auto;
       border:1px solid lightgray;
       padding:.5rem .5rem .75rem .5rem;
     }
-    </style>
+    #output-example {
+      width: 88%;
+      margin-left:auto;
+      margin-right:auto;
+    }
+    #output-example pre {
+      background-color: whitesmoke;
+      padding: .5rem;
+      margin:.5rem;
+    }
+    #app .toggler {
+      display: inline-block;
+      margin: 0 0 0 1.5em;
+    }
+    #app .toggler button {
+      padding: .5rem;
+      margin: auto 1em;
+    }
+    #app h2 {
+      display: inline-block;
+    }
 
-    <!--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>-->
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/cash/1.3.0/cash.min.js"></script>-->
+    /*#ouput-example>div {
+      width: 50%;
+      float: left;
+    }*/
+    .grid-form-header {
+      text-align: right;
+    }
+    .form-footer {
+      text-align:right;
+    }
+    .form-footer button {
+      font-size:1.1em;
+      padding: .75em;
+    }
+    .no-grid-msg {
+      text-align: center;
+    }
+
+
+    </style>
   </head>
   <body>
     <div id="app">
+      <h2>Vue GridForms Demo</h2>
 
-      <grid-form
-        v-ref:test-form
-        @submit.prevent="handleSubmit"
-        header="<h2>New User Application</h2>"
-        id="form-example"
-        :sections="formSections"
-      >
-        <div style="text-align:right">
-          <button
-            style="font-size:1.1em;padding:.25em .5em;"
-            type="submit"
-            v-text="'Submit'">
-          </button>
+      <div class="toggler">
+        <button @click="switchForms">Inventory Form</button>
+        <button @click="switchForms">New User Form</button>
+      </div>
+
+      <!--<hr>-->
+
+      <div v-if="activeForm.schema">
+
+        <grid-form v-ref:test-form
+          id="form-example"
+          @submit.prevent="handleSubmit"
+          :header="activeForm.title"
+          :sections="activeForm.schema">
+
+          <div class="form-footer">
+            <button
+              class="form-submit"
+              type="submit"
+              v-text="'Submit'">
+            </button>
+          </div>
+
+        </grid-form>
+
+      </div>
+      <div v-else
+        class="no-grid-msg"
+        v-html="'<br><h2>Please choose a form</h2>'">
+      </div>
+
+      <div id="output-example" v-if="formResults">
+        <h3 v-text="'Submission Results'"></h3>
+        <div class="output-left">
+          <h5 v-text="'Results as an Object'"></h5>
+          <pre v-text="formResults.obj | json"></pre>
         </div>
-      </grid-form>
-
-      <div>
-        <pre v-text="formResults | json"></pre>
+        <div class="output-right">
+          <h5 v-text="'Results as an Array'"></h5>
+          <pre v-text="formResults.arr | json"></pre>
+        </div>
       </div>
 
     </div>
