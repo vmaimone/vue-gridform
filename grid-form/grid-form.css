@@ -41,25 +41,10 @@
   text-align: right;
   text-transform: uppercase;
 }
-
-.grid-form input[type="text"],
-.grid-form input[type="email"],
-.grid-form input[type="number"],
-.grid-form input[type="password"],
-.grid-form input[type="search"],
-.grid-form input[type="tel"],
-.grid-form input[type="url"],
-.grid-form input[type="color"],
-.grid-form input[type="date"],
-.grid-form input[type="datetime"],
-.grid-form input[type="datetime-local"],
-.grid-form input[type="month"],
-.grid-form input[type="time"],
-.grid-form input[type="week"],
+.grid-form input:not([type="checkbox"]),
 .grid-form textarea {
   font-size: 1rem;
   padding: .25rem;
-  /*height: auto;*/
   height: 100%;
   margin: 0;
   width: 100%;

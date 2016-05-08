@@ -2,7 +2,7 @@ const Vue = require('vue')
 const Sections = require('./form-schema')
 const GridForm = process.env.NODE_ENV === 'production'
   ? require('../dist/vue-gridform')
-  : require('../src/grid-form/gridform.common')
+  : require('../grid-form/gridform.common')
 
 Vue.config.devtools = true
 

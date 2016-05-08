@@ -4,7 +4,7 @@ var webpack = require('webpack')
 module.exports = {
   entry: {
    example: './example/main.js',
-   'vue-gridform': './src/grid-form/gridform.common.js'
+   'vue-gridform': './grid-form/gridform.common.js'
   },
   output: {
     path: path.resolve(__dirname, './dist'),
