@@ -77,7 +77,7 @@ const retailPrice = {
   value: null
 }
 
-export const InventoryForm = {
+const InventoryForm = {
   legend: 'Add To Inventory',
   rows: [
     {
@@ -99,3 +99,5 @@ export const InventoryForm = {
 
   ]
 }
+
+module.exports = { inventory: InventoryForm }

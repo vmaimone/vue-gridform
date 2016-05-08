@@ -14,8 +14,8 @@ new Vue({
       schema: NewUserForm
     },
     inventoryForm: {
-      schema: InventoryForm,
-      title: '<h2>Inventory Adjustment</h2>'
+      title: '<h2>Inventory Adjustment</h2>',
+      schema: InventoryForm
     },
     activeForm: {},
     viewingSchema: false,

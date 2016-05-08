@@ -6,8 +6,8 @@
       v-for="(section,fieldset) in sections"
       :rows="fieldset.rows"
       :legend="fieldset.legend"
-      style="padding-bottom:.25rem;"></field-set>
-    <br>
+      style="padding-bottom:.25rem;">
+    </field-set><br>
     <slot></slot>
   </form>
 </template>

@@ -66,9 +66,4 @@ const personalDetails = {
   ]
 }
 
-var ExampleForm = { branchDetails: branchDetails, personalDetails: personalDetails }
-if(typeof module === 'object' && typeof require === 'function') {
-  module.exports = module.exports.default = ExampleForm
-} else {
-  window.ExampleForm = ExampleForm
-}
+module.exports = { branchDetails: branchDetails, personalDetails: personalDetails }
