@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>vue-gridform</title>
+    <style>
+    body {
+      font-family: Helvetica, sans-serif;
+    }
+
+    #form-example {
+      width: 80%;
+      margin-left:auto;
+      margin-right:auto;
+      border:1px solid lightgray;
+      padding:.5rem .5rem .75rem .5rem;
+    }
+    </style>
+
+    <!--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>-->
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/cash/1.3.0/cash.min.js"></script>-->
+  </head>
+  <body>
+    <div id="app">
+
+      <grid-form
+        v-ref:test-form
+        @submit.prevent="handleSubmit"
+        header="<h2>New User Application</h2>"
+        id="form-example"
+        :sections="formSections"
+      >
+        <div style="text-align:right">
+          <button
+            style="font-size:1.1em;padding:.25em .5em;"
+            type="submit"
+            v-text="'Submit'">
+          </button>
+        </div>
+      </grid-form>
+
+      <div>
+        <pre v-text="formResults | json"></pre>
+      </div>
+
+    </div>
+    <script src="../dist/example.js"></script>
+  </body>
+</html>
