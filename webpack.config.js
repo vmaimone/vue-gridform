@@ -9,6 +9,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
+    library: 'VueGridform',
     libraryTarget: "umd",
     filename: '[name].js'
   },
