@@ -1,7 +1,7 @@
 const Vue = require('vue')
 const NewUserForm = require('./form-schema')
 const InventoryForm = require('./another-form-schema')
-const GridForm = require('../grid-form/gridform.common')
+const GridForm = require('../grid-form/index.vue')
 
 Vue.config.devtools = true
 
@@ -18,16 +18,16 @@ new Vue({
       title: '<h2>Inventory Adjustment</h2>'
     },
     activeForm: {},
+    viewingSchema: false,
     formResults: null
   },
   methods: {
-    switchForms() {
+    viewSchema() {
+      this.viewingSchema = !this.viewingSchema
+    },
+    switchForms(form) {
       this.formResults = {}
-      if(this.activeForm == this.newUserForm) {
-        this.activeForm = this.inventoryForm
-      } else {
-        this.activeForm = this.newUserForm
-      }
+      this.activeForm = form
     },
     handleSubmit(a,b) {
       console.log(a,b)

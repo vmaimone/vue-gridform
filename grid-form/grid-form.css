@@ -82,7 +82,7 @@
 .grid-form input:not([type="checkbox"]):focus,
 .grid-form textarea:focus,
 .grid-form select:focus {
-  outline: none;
+  outline: 0;
 }
 
 .grid-form fieldset {

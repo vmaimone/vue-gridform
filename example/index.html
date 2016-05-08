@@ -19,27 +19,24 @@
       margin-left:auto;
       margin-right:auto;
     }
-    #output-example pre {
+    #app pre {
       background-color: whitesmoke;
-      padding: .5rem;
-      margin:.5rem;
+      padding: 1rem;
+      margin: 0;
+      border-radius: 4px;
+      border: 1px solid lightgray;
     }
-    #app .toggler {
+    #app .toggles {
       display: inline-block;
       margin: 0 0 0 1.5em;
     }
-    #app .toggler button {
+    #app .toggles button {
       padding: .5rem;
       margin: auto 1em;
     }
     #app h2 {
       display: inline-block;
     }
-
-    /*#ouput-example>div {
-      width: 50%;
-      float: left;
-    }*/
     .grid-form-header {
       text-align: right;
     }
@@ -61,30 +58,35 @@
     <div id="app">
       <h2>Vue GridForms Demo</h2>
 
-      <div class="toggler">
-        <button @click="switchForms">Inventory Form</button>
-        <button @click="switchForms">New User Form</button>
+      <div class="toggles">
+        <button @click="switchForms(inventoryForm)">Inventory Form</button>
+        <button @click="switchForms(newUserForm)">New User Form</button>
+        <button @click="viewSchema" v-text="viewingSchema ? 'Show Form' : 'Show Schema'"></button>
       </div>
 
-      <!--<hr>-->
-
       <div v-if="activeForm.schema">
+        <div v-if="!viewingSchema">
 
-        <grid-form v-ref:test-form
-          id="form-example"
-          @submit.prevent="handleSubmit"
-          :header="activeForm.title"
-          :sections="activeForm.schema">
+          <grid-form v-ref:test-form
+            id="form-example"
+            @submit.prevent="handleSubmit"
+            :header="activeForm.title"
+            :sections="activeForm.schema">
 
-          <div class="form-footer">
-            <button
-              class="form-submit"
-              type="submit"
-              v-text="'Submit'">
-            </button>
-          </div>
+            <div class="form-footer">
+              <button
+                class="form-submit"
+                type="submit"
+                v-text="'Submit'">
+              </button>
+            </div>
 
-        </grid-form>
+          </grid-form>
+
+        </div>
+        <div v-else>
+          <pre v-text="activeForm.schema | json"></pre>
+        </div>
 
       </div>
       <div v-else
@@ -94,11 +96,13 @@
 
       <div id="output-example" v-if="formResults">
         <h3 v-text="'Submission Results'"></h3>
-        <div class="output-left">
+
+        <div>
           <h5 v-text="'Results as an Object'"></h5>
           <pre v-text="formResults.obj | json"></pre>
         </div>
-        <div class="output-right">
+
+        <div>
           <h5 v-text="'Results as an Array'"></h5>
           <pre v-text="formResults.arr | json"></pre>
         </div>
