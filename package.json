@@ -1,6 +1,6 @@
 {
   "name": "vue-gridform",
-  "description": "A Vue.js implementation of [gridforms.js](http://kumailht.com/gridforms)",
+  "description": "A Vue.js implementation of gridforms.js",
   "author": "Vin Maimone <vmaimone@rochester.rr.com>",
   "private": false,
   "scripts": {
@@ -29,7 +29,7 @@
     "webpack": "^1.12.2",
     "webpack-dev-server": "^1.12.0"
   },
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "grid-form/gridform.common.js",
   "directories": {
     "example": "example"
