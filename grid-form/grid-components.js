@@ -10,23 +10,27 @@ export const fieldContainer = {
   methods: {
     setFocus() {
       const { formField } = this.$els
-      if (this.type !== 'select') {
+        this.$el.classList.add('focus')
         formField.classList.add('focus')
         formField.focus()
+
+      if (this.type !== 'select') {
         formField.select()
       } else {
       }
     },
     removeFocus() {
       this.$els.formField.classList.remove('focus')
+      this.$el.classList.remove('focus')
     }
   },
   template: `
-    <div @click="setFocus" class="grid-form-field-container" data-field-span={{cols}}>
+    <div @click.stop="setFocus" class="grid-form-field-container" data-field-span={{cols}}>
       <label class="grid-form-field-label" v-text="label"></label>
       <div v-if="type === 'select'">
         <select v-el:form-field
           v-model="value"
+          @focus="setFocus"
           @blur="removeFocus">
           <option v-for="opt in options" :value="opt" v-text="opt"></option>
         </select>
@@ -35,6 +39,7 @@ export const fieldContainer = {
         <input v-el:form-field
           v-model="value"
           @blur="removeFocus"
+          @focus="setFocus"
           type="{{type || 'text'}}"
         />
       </div>
